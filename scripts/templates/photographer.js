@@ -19,6 +19,7 @@ function photographerTemplate(data) {
         <p class="location" aria-label="Localisation" >${city}, ${country}</p>
         <p class="quote" aria-label="Slogan">${tagline}</p>
         <p class="price" aria-label="Salaire horaire">${price}€/jour</p>
+        <p class="invisible_helper_text">Cliquez pour accéder à la page complète de ce photographe</p>
       </div>`;
 
     return userCard;

@@ -4,8 +4,9 @@ function cardWithLink(card, id) {
   };
 
   card.addEventListener("click", navigateToPhotoprapherPage);
-  card.addEventListener("keyDown", (event) => {
-    (event.key === "enter" || event.key === "space") &&
+  //En tapant sur les touches espace ou entrer, l'évènement se déclenche
+  card.addEventListener("keydown", (event) => {
+    (event.keyCode === 32 || event.keyCode === 13) &&
       navigateToPhotoprapherPage();
   });
   return card;
