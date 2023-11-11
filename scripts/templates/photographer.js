@@ -1,17 +1,27 @@
 function photographerTemplate(data) {
-    const { name, portrait } = data;
+  const { name, portrait, id, city, country, tagline, price } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+  const picture = `assets/photographers/${
+    portrait ? "id/" + portrait : "/favicon.png"
+  }`;
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
-        return (article);
-    }
-    return { name, picture, getUserCardDOM }
+  function getUserCardDOM() {
+    const userCard = document.createElement("article");
+    userCard.setAttribute("aria-label", `Carte de présentation de ${name}`);
+    userCard.setAttribute("tabindex", 0);
+
+    userCard.innerHTML = `
+      <div class="img_container">
+        <img src="${picture}" alt="Profil de ${name}" />
+      </div>
+      <div class="text_container">
+        <h2 aria-label="Nom">${name}</h2>
+        <p class="location" aria-label="Localisation" >${city}, ${country}</p>
+        <p class="quote" aria-label="Slogan">${tagline}</p>
+        <p class="price" aria-label="Salaire horaire">${price}€/jour</p>
+      </div>`;
+
+    return userCard;
+  }
+  return { name, picture, id, getUserCardDOM };
 }
