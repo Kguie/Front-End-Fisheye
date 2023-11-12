@@ -28,12 +28,18 @@
           <p>Trier par</p>
           <div id="collapse">
             <button class="collapse__chosen">
-              <p>test</p>
-              <img src="./assets/icons/arrow-up.png" />
+              <p></p>
+              <span class="collapse__chosen__icon" aria-hidden="true"></span>
             </button>
             <div class="collapse__other-choices-container">
-              <button><p>test</p></button>
-              <button><p>test</p></button>
+              <button class="collapse__other-choices-container__choice1">
+                <span class="divider">.</span>
+                <p></p>
+              </button>
+              <button class="collapse__other-choices-container__choice2">
+                <span class="divider">.</span>
+                <p></p>
+              </button>
             </div>
           </div>
         </div>
@@ -55,9 +61,9 @@
       </div>
     </div>
     <script src="scripts/templates/photographer.js"></script>
-    <script src="scripts/templates/collapse.js"></script>
     <script src="scripts/api/api.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/photosSorter.js"></script>
   </body>
 </html>

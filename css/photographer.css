@@ -52,34 +52,75 @@
 }
 #collapse button {
   padding: 0 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 #collapse p {
   font-size: 18px;
   font-weight: 700;
   color: #fff;
+  margin: 0;
 }
 .collapse__chosen {
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+/* Animation de l'icone  */
+.collapse__chosen__icon {
+  position: absolute;
+  background-image: url(../assets/icons/up.svg);
+  background-repeat: no-repeat;
+  right: 15px;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  background-size: contain;
+  content: "";
+  width: 25px;
+  height: 25px;
+  align-self: center;
 }
 
+.collapse__chosen--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* animation du container */
 .collapse__other-choices-container {
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   display: flex;
   flex-direction: column;
-  max-height: 0px;
+  max-height: 0;
+  will-change: max-height;
   overflow: hidden;
-  transition: max-height 2s cubic-bezier(0, 1, 0, 1);
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
-.collapse__others--show {
-  display: flex;
-  flex-direction: column;
-  max-height: 100px;
-  transition: max-height 2s ease-in-out;
+.collapse__other-choices-container--open {
+  transition: all 0.5s ease-in-out;
+}
+
+.collapse__other-choices-container button {
+  border-radius: 0;
+  height: 50px;
+  position: relative;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 150px;
+  height: 1px;
+  background-color: #fff;
+  color: transparent;
 }
 
 .modal {
