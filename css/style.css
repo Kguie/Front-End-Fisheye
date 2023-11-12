@@ -18,7 +18,26 @@ h1 {
   margin-right: 100px;
 }
 
+button {
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  width: 170px;
+  color: #fff;
+}
+
+button:hover,
+button:focus {
+  background-color: #d3573c;
+}
+
 .logo {
+  height: 50px;
+}
+
+.homePage_link {
   height: 50px;
   margin-left: 100px;
 }
@@ -39,18 +58,13 @@ h1 {
   cursor: pointer;
 }
 
-.photographer_section article h2 {
+.name {
   color: #d3573c;
-  text-align: center;
   font-size: 36px;
   font-weight: 400;
-  margin: 20px 0 0 0;
-  padding: 5px 0;
 }
 
-.photographer_section article img {
-  height: 250px;
-  width: 250px;
+.profile_img {
   object-fit: cover;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25));
   flex-shrink: 0;
@@ -67,26 +81,14 @@ h1 {
   background-color: #c4c4c4;
 }
 
-.text_container {
-  flex-direction: column;
-  text-align: center;
-}
-
 .text_container p {
   margin: 0;
-  padding: 2px 0;
 }
 .location {
   color: #901c1c;
-  font-size: 13px;
 }
 .quote {
   color: #000;
-  font-size: 10px;
-}
-.price {
-  color: #757575;
-  font-size: 9px;
 }
 
 .invisible_helper_text {
