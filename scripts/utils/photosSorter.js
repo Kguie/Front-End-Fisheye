@@ -48,7 +48,7 @@ function photoSorter(sortKey) {
 }
 
 /**
- * Gère l'ouverture et la fermeture du collapse
+ * Gère l'ouverture et la fermeture du collapse avec animation
  */
 function handleCollaspe() {
   const isOpen = document.querySelector(
@@ -62,23 +62,24 @@ function handleCollaspe() {
   );
   const collapseScreen = document.querySelector(".collapse__chosen");
   const icon = document.querySelector(".collapse__chosen__icon");
+  const collapseElement = document.getElementById("collapse");
 
   if (isOpen) {
     collapseContainer.classList.remove(
       "collapse__other-choices-container--open"
     );
-    collapseContainer.style.maxHeight = 0;
-
+    collapseElement.style.marginBottom = 0;
     icon.style.transform = "rotate(0deg)";
-    //Permet le retour des bords arrondis du bouton à la fin de l'animation
-    setTimeout(
-      () => collapseScreen.classList.remove("collapse__chosen--open"),
-      250
-    );
+    //Permet le retour des bords arrondis du bouton à la fin de l'animation et la disparition des autres boutons
+    setTimeout(() => {
+      collapseContainer.style.opacity = 0;
+      collapseScreen.classList.remove("collapse__chosen--open");
+    }, 100);
     return;
   }
+  collapseElement.style.marginBottom = "10px";
+  collapseContainer.style.opacity = 1;
   collapseContainer.classList.add("collapse__other-choices-container--open");
   collapseScreen.classList.add("collapse__chosen--open");
   icon.style.transform = "rotate(180deg)";
-  collapseContainer.style.maxHeight = "100px";
 }

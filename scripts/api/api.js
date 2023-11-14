@@ -24,3 +24,28 @@ async function getPhotographers() {
     return [];
   }
 }
+
+//Renvoie toutes les medias de tous les photographes ou d'un seul si un id est présent dans l'url
+async function getMedias() {
+  try {
+    const response = await fetch("../../data/photographers.json");
+    const { media } = await response.json();
+    // Vérifie si un id est présent dans les paramètres et le récupère
+    const paramsId = new URLSearchParams(window.location.search).get("id");
+
+    if (paramsId && Array.isArray(media)) {
+      const photographerMedias = media.filter(
+        (media) => media["photographerId"] === parseInt(paramsId)
+      );
+      if (photographerMedias) {
+        return photographerMedias;
+      } else {
+        return [];
+      }
+    }
+    return media || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}

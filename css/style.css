@@ -40,6 +40,12 @@ button:focus {
 .homePage_link {
   height: 50px;
   margin-left: 100px;
+  border-right: 20px solid transparent;
+}
+
+.homePage_link:hover,
+.homePage_link:focus {
+  border-right-color: #d3573c;
 }
 
 .photographer_section {

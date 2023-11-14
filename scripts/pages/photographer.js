@@ -23,9 +23,14 @@ function displaySorter() {
   });
 }
 
+async function displayMedias(sortKey) {
+  const medias = await getMedias();
+}
+
 async function init() {
   // Récupère les datas du photographe,
   const photographer = await getPhotographers();
+
   // Vérifie si un id est présent dans les paramètres
   const paramsId = new URLSearchParams(window.location.search).get("id")
     ? true
