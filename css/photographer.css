@@ -227,6 +227,21 @@ aside p {
   margin: 0;
 }
 
+.like-container {
+  position: relative;
+  display: flex;
+}
+
+.like-container__icon {
+  position: absolute;
+  background-image: url(../assets/icons/like-black.svg);
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 25px;
+  align-self: center;
+  right: -30px;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;

@@ -1,4 +1,6 @@
-function photoSorter(sortKey) {
+async function photoSorter(sortKey) {
+  const medias = await getMedias();
+
   let totalKeys = ["Popularité", "Date", "Titre"];
 
   const chosen = document.querySelector(".collapse__chosen");
@@ -13,11 +15,11 @@ function photoSorter(sortKey) {
   chosen.addEventListener("click", handleCollaspe);
 
   /**
-   * Constitue l'afficahe de la partie de tri au changement de méthode
+   * Constitue l'affichage de la partie de tri au changement de méthode
    */
   function handleChange() {
     const noChosenArray = totalKeys.filter((key) => key !== sortKey);
-
+    sortMedias(medias, sortKey);
     //Affiche texte du collapse
     chosen.querySelector("p").textContent = sortKey;
     chosen.setAttribute("aria-label", `Tri par ${sortKey}`);
@@ -26,15 +28,22 @@ function photoSorter(sortKey) {
     noChosen2.querySelector("p").textContent = noChosenArray[1];
     noChosen2.setAttribute("aria-label", `Tri par ${noChosenArray[1]}`);
 
+    const $likesNumberWrapperList = document.querySelectorAll(
+      ".media-card__text-container__likes___amount"
+    );
+    displayLikesTotal($likesNumberWrapperList);
     return;
   }
 
   /**
-   * Constitue l'afficahe de la partie de tri au démarrage de pa page
+   * Constitue l'affichage de la partie de tri au démarrage de la page
    */
   function initSort() {
     const chosenKey = totalKeys[0];
     const noChosenArray = totalKeys.filter((key) => key !== chosenKey);
+
+    //Affiche les cartes
+    sortMedias(medias, "popularité");
 
     //Affiche texte du collapse
     chosen.querySelector("p").textContent = chosenKey;
@@ -43,6 +52,12 @@ function photoSorter(sortKey) {
     noChosen1.setAttribute("aria-label", `Tri par ${noChosenArray[0]}`);
     noChosen2.querySelector("p").textContent = noChosenArray[1];
     noChosen2.setAttribute("aria-label", `Tri par ${noChosenArray[1]}`);
+
+    const $likesNumberWrapperList = document.querySelectorAll(
+      ".media-card__text-container__likes___amount"
+    );
+    displayLikesTotal($likesNumberWrapperList);
+    return;
   }
   return !sortKey ? initSort() : handleChange();
 }

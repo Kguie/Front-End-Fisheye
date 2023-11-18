@@ -30,12 +30,24 @@ function displaySorter() {
   });
 }
 
-async function displayMedias(sortKey) {
-  const medias = await getMedias();
+async function displayMedias(medias) {
   const $mediasWrapper = document.querySelector(".medias-section__medias");
+  //Vide d'abord le contenu
+  $mediasWrapper.innerHTML = ``;
   medias.forEach((media) => {
     $mediasWrapper.appendChild(mediaCardTemplate(media));
   });
+}
+
+function displayLikesTotal(nodeList) {
+  const $totalWrapper = document.querySelector(".like-container__amount");
+  let total = 0;
+
+  nodeList.forEach((node) => {
+    total += parseInt(node.textContent);
+  });
+  const formattedAmount = total.toLocaleString("fr-FR");
+  $totalWrapper.textContent = formattedAmount;
 }
 
 async function init() {
@@ -53,7 +65,6 @@ async function init() {
     window.location.href = "index.html";
   }
   displaySorter();
-  displayMedias();
 }
 
 init();
