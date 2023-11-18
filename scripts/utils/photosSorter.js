@@ -51,6 +51,13 @@ function photoSorter(sortKey) {
  * Gère l'ouverture et la fermeture du collapse avec animation
  */
 function handleCollaspe() {
+  const chosen = document.querySelector(".collapse__chosen");
+  const noChosen1 = document.querySelector(
+    ".collapse__other-choices-container__choice1"
+  );
+  const noChosen2 = document.querySelector(
+    ".collapse__other-choices-container__choice2"
+  );
   const isOpen = document.querySelector(
     ".collapse__other-choices-container--open"
   )
@@ -62,24 +69,36 @@ function handleCollaspe() {
   );
   const collapseScreen = document.querySelector(".collapse__chosen");
   const icon = document.querySelector(".collapse__chosen__icon");
-  const collapseElement = document.getElementById("collapse");
 
   if (isOpen) {
     collapseContainer.classList.remove(
       "collapse__other-choices-container--open"
     );
-    collapseElement.style.marginBottom = 0;
+    //les boutons ne sont plus sélectionnables par tab
+    noChosen1.setAttribute("tabIndex", -1);
+    noChosen2.setAttribute("tabIndex", -1);
+    noChosen1.setAttribute("aria-hidden", true);
+    noChosen2.setAttribute("aria-hidden", true);
     icon.style.transform = "rotate(0deg)";
     //Permet le retour des bords arrondis du bouton à la fin de l'animation et la disparition des autres boutons
     setTimeout(() => {
       collapseContainer.style.opacity = 0;
       collapseScreen.classList.remove("collapse__chosen--open");
     }, 100);
+    chosen.setAttribute("aria-label", "Cliquez pour choisir un ordre de tri");
     return;
   }
-  collapseElement.style.marginBottom = "10px";
+  //Les boutons sont sélectionnables par tab
+  noChosen1.setAttribute("tabIndex", 0);
+  noChosen2.setAttribute("tabIndex", 0);
+  noChosen1.setAttribute("aria-hidden", false);
+  noChosen2.setAttribute("aria-hidden", false);
+
+  //Le collapse devient visible avec une translation vers le bas
+
   collapseContainer.style.opacity = 1;
   collapseContainer.classList.add("collapse__other-choices-container--open");
   collapseScreen.classList.add("collapse__chosen--open");
   icon.style.transform = "rotate(180deg)";
+  chosen.setAttribute("aria-label", "Ne pas changer l'ordre de tri");
 }

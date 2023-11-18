@@ -1,8 +1,15 @@
 async function displayData(photographer) {
-  const photographersSection = document.querySelector(".photograph-header");
-  const photographerModel = photographerTemplate(photographer);
-  const userCardDOM = photographerModel.getPageUserCardDOM();
-  photographersSection.appendChild(userCardDOM);
+  const $photographersWrapper = document.querySelector(".photograph-header");
+
+  const { price, getPageUserCardDOM } = photographerTemplate(photographer);
+  const userCardDOM = getPageUserCardDOM();
+  $photographersWrapper.appendChild(userCardDOM);
+
+  const photographerSalary = document.querySelector(
+    ".salary-container__amount"
+  );
+
+  photographerSalary.textContent = price;
 }
 
 function displaySorter() {
@@ -25,6 +32,10 @@ function displaySorter() {
 
 async function displayMedias(sortKey) {
   const medias = await getMedias();
+  const $mediasWrapper = document.querySelector(".medias-section__medias");
+  medias.forEach((media) => {
+    $mediasWrapper.appendChild(mediaCardTemplate(media));
+  });
 }
 
 async function init() {
@@ -37,11 +48,12 @@ async function init() {
     : false;
 
   if (paramsId) {
-    displayData(photographer);
+    await displayData(photographer);
   } else {
     window.location.href = "index.html";
   }
   displaySorter();
+  displayMedias();
 }
 
 init();
