@@ -9,7 +9,7 @@ function mediaCardTemplate(data) {
   </div>
   <div class="media-card__text-container" >
     <p class="media-card__text-container__title">${title}</p>
-    <p class="media-card__text-container__likes">
+    <p class="media-card__text-container__likes" tabindex="0">
       <span class="media-card__text-container__likes___amount">${likes}</span>
       <span class="media-card__text-container__likes___button"><img src="assets/icons/like-red.svg" alt="Cliquez pour ajouter un like"/></span>
     </p>
