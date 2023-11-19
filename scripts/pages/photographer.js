@@ -35,7 +35,7 @@ async function displayMedias(medias) {
   //Vide d'abord le contenu
   $mediasWrapper.innerHTML = ``;
   medias.forEach((media) => {
-    $mediasWrapper.appendChild(mediaCardTemplate(media));
+    $mediasWrapper.appendChild(interactiveMediaCard(mediaCardTemplate(media)));
   });
 }
 
