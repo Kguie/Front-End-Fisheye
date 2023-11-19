@@ -14,28 +14,60 @@ async function displayData(photographer) {
 
 function displaySorter() {
   photoSorter();
-  const noChosen1 = document.querySelector(
+  const $chosenSortOption = document.querySelector(".collapse__chosen");
+  const $noChosen1SortOption = document.querySelector(
     ".collapse__other-choices-container__choice1"
   );
-  const noChosen2 = document.querySelector(
+  const $noChosen2SortOption = document.querySelector(
     ".collapse__other-choices-container__choice2"
   );
-  noChosen1.addEventListener("click", () => {
-    photoSorter(noChosen1.querySelector("p").textContent);
+
+  $noChosen1SortOption.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      $chosenSortOption.focus();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      $noChosen2SortOption.focus();
+    } else if (event.key === "Escape") {
+      // Déclenche l'événement au clic pour fermer le collapse
+      $chosenSortOption.focus();
+      $chosenSortOption.dispatchEvent(new Event("click"));
+    }
+  });
+  $noChosen2SortOption.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      $noChosen1SortOption.focus();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      $chosenSortOption.focus();
+    } else if (event.key === "Escape") {
+      // Déclenche l'événement au clic pour fermer le collapse
+      $chosenSortOption.focus();
+      $chosenSortOption.dispatchEvent(new Event("click"));
+    }
+  });
+
+  //Event listeners pour changer de tri
+  $noChosen1SortOption.addEventListener("click", () => {
+    photoSorter($noChosen1SortOption.querySelector("p").textContent);
     handleCollaspe();
   });
-  noChosen2.addEventListener("click", () => {
-    photoSorter(noChosen2.querySelector("p").textContent);
+  $noChosen2SortOption.addEventListener("click", () => {
+    photoSorter($noChosen2SortOption.querySelector("p").textContent);
     handleCollaspe();
   });
 }
 
-async function displayMedias(medias) {
+async function displayMedias(mediaList) {
   const $mediasWrapper = document.querySelector(".medias-section__medias");
   //Vide d'abord le contenu
   $mediasWrapper.innerHTML = ``;
-  medias.forEach((media) => {
-    $mediasWrapper.appendChild(interactiveMediaCard(mediaCardTemplate(media)));
+  mediaList.forEach((media) => {
+    $mediasWrapper.appendChild(
+      interactiveMediaCard(mediaCardTemplate(media, mediaList))
+    );
   });
 }
 

@@ -3,16 +3,16 @@ async function photoSorter(sortKey) {
 
   let totalKeys = ["Popularité", "Date", "Titre"];
 
-  const chosen = document.querySelector(".collapse__chosen");
-  const noChosen1 = document.querySelector(
+  const $chosenSortOption = document.querySelector(".collapse__chosen");
+  const $noChosen1SortOption = document.querySelector(
     ".collapse__other-choices-container__choice1"
   );
-  const noChosen2 = document.querySelector(
+  const $noChosen2SortOption = document.querySelector(
     ".collapse__other-choices-container__choice2"
   );
 
   //Ajout des eventListener pour la gestion de l'ouverture du collapse
-  chosen.addEventListener("click", handleCollaspe);
+  $chosenSortOption.addEventListener("click", handleCollaspe);
 
   /**
    * Constitue l'affichage de la partie de tri au changement de méthode
@@ -21,12 +21,18 @@ async function photoSorter(sortKey) {
     const noChosenArray = totalKeys.filter((key) => key !== sortKey);
     sortMedias(medias, sortKey);
     //Affiche texte du collapse
-    chosen.querySelector("p").textContent = sortKey;
-    chosen.setAttribute("aria-label", `Tri par ${sortKey}`);
-    noChosen1.querySelector("p").textContent = noChosenArray[0];
-    noChosen1.setAttribute("aria-label", `Tri par ${noChosenArray[0]}`);
-    noChosen2.querySelector("p").textContent = noChosenArray[1];
-    noChosen2.setAttribute("aria-label", `Tri par ${noChosenArray[1]}`);
+    $chosenSortOption.querySelector("p").textContent = sortKey;
+    $chosenSortOption.setAttribute("aria-label", `Tri par ${sortKey}`);
+    $noChosen1SortOption.querySelector("p").textContent = noChosenArray[0];
+    $noChosen1SortOption.setAttribute(
+      "aria-label",
+      `Tri par ${noChosenArray[0]}`
+    );
+    $noChosen2SortOption.querySelector("p").textContent = noChosenArray[1];
+    $noChosen2SortOption.setAttribute(
+      "aria-label",
+      `Tri par ${noChosenArray[1]}`
+    );
 
     const $likesNumberWrapperList = document.querySelectorAll(
       ".media-card__text-container__likes___amount"
@@ -46,12 +52,18 @@ async function photoSorter(sortKey) {
     sortMedias(medias, "popularité");
 
     //Affiche texte du collapse
-    chosen.querySelector("p").textContent = chosenKey;
-    chosen.setAttribute("aria-label", `Tri par ${chosenKey}`);
-    noChosen1.querySelector("p").textContent = noChosenArray[0];
-    noChosen1.setAttribute("aria-label", `Tri par ${noChosenArray[0]}`);
-    noChosen2.querySelector("p").textContent = noChosenArray[1];
-    noChosen2.setAttribute("aria-label", `Tri par ${noChosenArray[1]}`);
+    $chosenSortOption.querySelector("p").textContent = chosenKey;
+    $chosenSortOption.setAttribute("aria-label", `Tri par ${chosenKey}`);
+    $noChosen1SortOption.querySelector("p").textContent = noChosenArray[0];
+    $noChosen1SortOption.setAttribute(
+      "aria-label",
+      `Tri par ${noChosenArray[0]}`
+    );
+    $noChosen2SortOption.querySelector("p").textContent = noChosenArray[1];
+    $noChosen2SortOption.setAttribute(
+      "aria-label",
+      `Tri par ${noChosenArray[1]}`
+    );
 
     const $likesNumberWrapperList = document.querySelectorAll(
       ".media-card__text-container__likes___amount"
@@ -66,11 +78,11 @@ async function photoSorter(sortKey) {
  * Gère l'ouverture et la fermeture du collapse avec animation
  */
 function handleCollaspe() {
-  const chosen = document.querySelector(".collapse__chosen");
-  const noChosen1 = document.querySelector(
+  const $chosenSortOption = document.querySelector(".collapse__chosen");
+  const $noChosen1SortOption = document.querySelector(
     ".collapse__other-choices-container__choice1"
   );
-  const noChosen2 = document.querySelector(
+  const $noChosen2SortOption = document.querySelector(
     ".collapse__other-choices-container__choice2"
   );
   const isOpen = document.querySelector(
@@ -85,35 +97,62 @@ function handleCollaspe() {
   const collapseScreen = document.querySelector(".collapse__chosen");
   const icon = document.querySelector(".collapse__chosen__icon");
 
-  if (isOpen) {
+  /**
+   *Gère la navigation au clavier entre les boutons du collapse
+   */
+  function handleCollaspeButtonsNavigation(event) {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      $noChosen2SortOption.focus();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      $noChosen1SortOption.focus();
+    } else if (event.key === "Escape") {
+      // Déclenche l'événement au clic pour fermer le collapse
+      $chosenSortOption.focus();
+      $chosenSortOption.dispatchEvent(new Event("click"));
+    }
+  }
+
+  if (!isOpen) {
+    //Les boutons sont sélectionnables par tab
+    $noChosen1SortOption.setAttribute("tabIndex", 0);
+    $noChosen2SortOption.setAttribute("tabIndex", 0);
+    $noChosen1SortOption.setAttribute("aria-hidden", false);
+    $noChosen2SortOption.setAttribute("aria-hidden", false);
+
+    //Le collapse devient visible avec une translation vers le bas
+
+    collapseContainer.style.opacity = 1;
+    collapseContainer.classList.add("collapse__other-choices-container--open");
+    collapseScreen.classList.add("collapse__chosen--open");
+    icon.style.transform = "rotate(180deg)";
+    $chosenSortOption.setAttribute(
+      "aria-label",
+      "Ne pas changer l'ordre de tri"
+    );
+    //Ajout de la fonction à la pression de la touche
+    $chosenSortOption.onkeydown = handleCollaspeButtonsNavigation;
+  } else {
     collapseContainer.classList.remove(
       "collapse__other-choices-container--open"
     );
     //les boutons ne sont plus sélectionnables par tab
-    noChosen1.setAttribute("tabIndex", -1);
-    noChosen2.setAttribute("tabIndex", -1);
-    noChosen1.setAttribute("aria-hidden", true);
-    noChosen2.setAttribute("aria-hidden", true);
+    $noChosen1SortOption.setAttribute("tabIndex", -1);
+    $noChosen2SortOption.setAttribute("tabIndex", -1);
+    $noChosen1SortOption.setAttribute("aria-hidden", true);
+    $noChosen2SortOption.setAttribute("aria-hidden", true);
     icon.style.transform = "rotate(0deg)";
     //Permet le retour des bords arrondis du bouton à la fin de l'animation et la disparition des autres boutons
     setTimeout(() => {
       collapseContainer.style.opacity = 0;
       collapseScreen.classList.remove("collapse__chosen--open");
     }, 100);
-    chosen.setAttribute("aria-label", "Cliquez pour choisir un ordre de tri");
-    return;
+    $chosenSortOption.setAttribute(
+      "aria-label",
+      "Cliquez pour choisir un ordre de tri"
+    );
+    //Suppression de la fonction à la pression de la touche
+    $chosenSortOption.onkeydown = null;
   }
-  //Les boutons sont sélectionnables par tab
-  noChosen1.setAttribute("tabIndex", 0);
-  noChosen2.setAttribute("tabIndex", 0);
-  noChosen1.setAttribute("aria-hidden", false);
-  noChosen2.setAttribute("aria-hidden", false);
-
-  //Le collapse devient visible avec une translation vers le bas
-
-  collapseContainer.style.opacity = 1;
-  collapseContainer.classList.add("collapse__other-choices-container--open");
-  collapseScreen.classList.add("collapse__chosen--open");
-  icon.style.transform = "rotate(180deg)";
-  chosen.setAttribute("aria-label", "Ne pas changer l'ordre de tri");
 }

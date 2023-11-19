@@ -12,9 +12,7 @@ function interactiveMediaCard(mediaCard) {
     $totalLikesWrapper.animate(
       { transform: ["scale(1)", "scale(1.5)", "scale(1)"] },
       { duration: 500, iterations: 1, easing: "ease-out" }
-    ).onfinish = (e) => {
-      e.target.effect.target.style.transform = "scale(1)";
-    };
+    );
   });
 
   $mediaWrapper.addEventListener("click", () => {});

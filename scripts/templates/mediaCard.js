@@ -1,4 +1,4 @@
-function mediaCardTemplate(data) {
+function mediaCardTemplate(data, sortedMediaList) {
   const { date, id, likes, price, title, video, image } = data;
   const mediaCard = document.createElement("article");
   mediaCard.classList.add("media-card");
