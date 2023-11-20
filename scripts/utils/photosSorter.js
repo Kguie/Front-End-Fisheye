@@ -34,10 +34,6 @@ async function photoSorter(sortKey) {
       `Tri par ${noChosenArray[1]}`
     );
 
-    const $likesNumberWrapperList = document.querySelectorAll(
-      ".media-card__text-container__likes___amount"
-    );
-    displayLikesTotal($likesNumberWrapperList);
     return;
   }
 
@@ -65,10 +61,6 @@ async function photoSorter(sortKey) {
       `Tri par ${noChosenArray[1]}`
     );
 
-    const $likesNumberWrapperList = document.querySelectorAll(
-      ".media-card__text-container__likes___amount"
-    );
-    displayLikesTotal($likesNumberWrapperList);
     return;
   }
   return !sortKey ? initSort() : handleChange();

@@ -5,15 +5,7 @@ function interactiveMediaCard(mediaCard) {
   );
   const $mediaWrapper = mediaCard.querySelector(".media-card__image-container");
 
-  $likeIconWrapper.addEventListener("click", () => {
-    const $totalLikesWrapper = document.querySelector(".like-container__icon");
-
-    //Animation sur l'icone total des likes
-    $totalLikesWrapper.animate(
-      { transform: ["scale(1)", "scale(1.5)", "scale(1)"] },
-      { duration: 500, iterations: 1, easing: "ease-out" }
-    );
-  });
+  handeLike($likeIconWrapper);
 
   $mediaWrapper.addEventListener("click", () => {});
 
