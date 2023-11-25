@@ -34,6 +34,9 @@ async function photoSorter(sortKey) {
       `Tri par ${noChosenArray[1]}`
     );
 
+    //Relance le compte de likes car pas de sauvegarde
+    likesTotalCounter();
+
     return;
   }
 
@@ -60,6 +63,8 @@ async function photoSorter(sortKey) {
       "aria-label",
       `Tri par ${noChosenArray[1]}`
     );
+    //Initialise le compte de likes
+    likesTotalCounter();
 
     return;
   }

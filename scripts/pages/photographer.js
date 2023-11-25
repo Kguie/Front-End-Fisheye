@@ -65,9 +65,8 @@ async function displayMedias(mediaList) {
   //Vide d'abord le contenu
   $mediasWrapper.innerHTML = ``;
   mediaList.forEach((media) => {
-    $mediasWrapper.appendChild(
-      interactiveMediaCard(mediaCardTemplate(media, mediaList))
-    );
+    const { mediaCard } = mediaCardTemplate(media, mediaList);
+    $mediasWrapper.appendChild(interactiveMediaCard(mediaCard));
   });
 }
 
