@@ -3,6 +3,11 @@ async function displayData(photographer) {
 
   const { price, getPageUserCardDOM } = photographerTemplate(photographer);
   const userCardDOM = getPageUserCardDOM();
+  const $contactButton = userCardDOM.querySelector(".contact_button");
+  const $name = userCardDOM.querySelector("h1");
+
+  //Ajout de la fonction sur le bouton contact
+  $contactButton.onclick = () => displayModal("contact", $name.textContent);
   $photographersWrapper.appendChild(userCardDOM);
 
   const photographerSalary = document.querySelector(
@@ -96,6 +101,12 @@ async function init() {
     window.location.href = "index.html";
   }
   displaySorter();
+
+  //Ajout de l'eventListener sur les croix des modal afin de les fermer
+  const contactCloseButton = document.querySelector(".modal__header img");
+  contactCloseButton.onclick = () => displayModal("contact");
+  const lightboxCloseButton = document.querySelector(".lightbox__close ");
+  lightboxCloseButton.onclick = () => displayModal("lightbox");
 }
 
 init();

@@ -11,9 +11,17 @@ function mediaCardTemplate(data, mediaList) {
     image,
     video,
     photographerId,
-    title
+    title,
+    id
   );
-  mediaContainer.appendChild(mediaContent);
+  //Ajout de l'eventListener
+  mediaContent.img.onclick = () =>
+    displayModal("lightbox", mediaList, mediaContent.mediaId);
+  mediaCard.keydown = (event) =>
+    event.key === "Enter" &&
+    displayModal("ligtbox", mediaList, mediaContent.mediaId);
+
+  mediaContainer.appendChild(mediaContent.img);
 
   const textContainer = document.createElement("div");
   textContainer.classList.add("media-card__text-container");

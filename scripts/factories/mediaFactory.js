@@ -1,4 +1,4 @@
-function createMediaThumbnail(image, video, photographerId, title) {
+function createMediaThumbnail(image, video, photographerId, title, mediaId) {
   const img = image
     ? document.createElement("img")
     : document.createElement("video");
@@ -6,11 +6,14 @@ function createMediaThumbnail(image, video, photographerId, title) {
   img.classList.add("media-card__media-container__image");
   function createImgThumbnail() {
     img.src = `assets/photographers/${photographerId}/${image}`;
-    return img;
+    return { img, mediaId };
   }
   function createVideoThumbnail() {
-    img.src = `assets/photographers/${photographerId}/${video}`;
-    return img;
+    img.innerHTML = `
+    <source src="assets/photographers/${photographerId}/${video}" type="video/mp4">
+    <p aria-hidden=true>Your browser does not support the video tag.<p>
+    `;
+    return { img, mediaId };
   }
   return image ? createImgThumbnail() : createVideoThumbnail();
 }
@@ -26,7 +29,12 @@ function createMediaLightbox(image, video, photographerId, title) {
   function createVideoLightbox() {
     const mediaPlayer = document.createElement("video");
     mediaPlayer.classList.add("lightbox__media-container__video");
-    mediaPlayer.src = `assets/photographers/${photographerId}/${video}`;
+    mediaPlayer.setAttribute("controls", true);
+    mediaPlayer.alt = title;
+    mediaPlayer.innerHTML = `
+    <source src="assets/photographers/${photographerId}/${video}" type="video/mp4">
+    <p aria-hidden=true>Your browser does not support the video tag.<p>
+    `;
     return mediaPlayer;
   }
   return image ? createImgLightbox() : createVideoLightbox();

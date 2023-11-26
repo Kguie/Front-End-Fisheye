@@ -44,7 +44,7 @@ function photographerTemplate(data) {
         }" src="${picture}" alt="Profil de ${name}" />
       </div>
       <div class="contact_button_container">
-        <button tabIndex="0" class="contact_button" aria-label="Contact me" onclick="displayModal()">
+        <button tabIndex="0" class="contact_button" aria-label="Contact me" >
             Contactez-moi
         </button>
       </div>  
