@@ -15,11 +15,13 @@ function mediaCardTemplate(data, mediaList) {
     id
   );
   //Ajout de l'eventListener
-  mediaContent.img.onclick = () =>
+  mediaContainer.onclick = () =>
     displayModal("lightbox", mediaList, mediaContent.mediaId);
-  mediaCard.keydown = (event) =>
-    event.key === "Enter" &&
-    displayModal("ligtbox", mediaList, mediaContent.mediaId);
+  mediaContainer.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      displayModal("lightbox", mediaList, mediaContent.mediaId);
+    }
+  };
 
   mediaContainer.appendChild(mediaContent.img);
 

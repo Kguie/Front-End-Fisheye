@@ -5,12 +5,12 @@ function likesTotalCounter() {
   displayLikesTotal($likesNumberWrapperList);
 }
 
-function handeLike(likeNode) {
+function handleLike(likeNode) {
   const likeAmountNode = likeNode.querySelector(
     ".media-card__text-container__likes___amount"
   );
 
-  likeNode.addEventListener("click", () => {
+  function addOrRemoveLike() {
     const isMediaLiked =
       likeNode.classList["1"] === "media-card__text-container__likes--liked"
         ? true
@@ -41,5 +41,14 @@ function handeLike(likeNode) {
       );
       likesTotalCounter();
     }
-  });
+  }
+  likeNode.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      addOrRemoveLike();
+    }
+  };
+
+  likeNode.onclick = () => {
+    addOrRemoveLike();
+  };
 }

@@ -103,10 +103,20 @@ async function init() {
   displaySorter();
 
   //Ajout de l'eventListener sur les croix des modal afin de les fermer
-  const contactCloseButton = document.querySelector(".modal__header img");
-  contactCloseButton.onclick = () => displayModal("contact");
-  const lightboxCloseButton = document.querySelector(".lightbox__close ");
-  lightboxCloseButton.onclick = () => displayModal("lightbox");
+  const $contactCloseButton = document.querySelector(".modal__header img");
+  $contactCloseButton.onclick = () => displayModal("contact");
+  $contactCloseButton.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      closeModal();
+    }
+  };
+  const $lightboxCloseButton = document.querySelector(".lightbox__close ");
+  $lightboxCloseButton.onclick = () => displayModal("lightbox");
+  $lightboxCloseButton.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      closeModal();
+    }
+  };
 }
 
 init();

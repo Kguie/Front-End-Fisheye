@@ -29,13 +29,22 @@ function handleLightbox(mediaId, sortedMediasList) {
   //Ajout des fonction au clic et appui sur les flèches sur les boutons next et previous
   $previousButton.onclick = () =>
     handleLightbox(previousMediaId, sortedMediasList);
+  $previousButton.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      handleLightbox(previousMediaId, sortedMediasList);
+    }
+  };
 
   $nextButton.onclick = () => handleLightbox(nextMediaId, sortedMediasList);
+  $nextButton.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      handleLightbox(nextMediaId, sortedMediasList);
+    }
+  };
 
   $body.onkeydown = (event) => {
-    console.log(event.key);
     if (event.key === "ArrowLeft") {
-      handleLightbox(nextMediaId, sortedMediasList);
+      handleLightbox(previousMediaId, sortedMediasList);
     } else if (event.key === "ArrowRight") {
       handleLightbox(nextMediaId, sortedMediasList);
     } else if (event.key === "Escape") {

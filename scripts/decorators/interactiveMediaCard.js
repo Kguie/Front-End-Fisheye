@@ -3,11 +3,7 @@ function interactiveMediaCard(mediaCard) {
   const $likeIconWrapper = mediaCard.querySelector(
     ".media-card__text-container__likes"
   );
-  const $mediaWrapper = mediaCard.querySelector(".media-card__media-container");
-
-  handeLike($likeIconWrapper);
-
-  $mediaWrapper.addEventListener("click", () => {});
+  handleLike($likeIconWrapper);
 
   return mediaCard;
 }
