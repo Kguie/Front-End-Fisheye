@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -16,8 +15,7 @@
         <img
           alt="Fisheye Home page"
           src="assets/images/logo.png"
-          class="logo"
-        />
+          class="logo" />
       </a>
     </header>
     <main id="main">
@@ -33,15 +31,13 @@
             <div class="collapse__other-choices-container">
               <button
                 tabindex="-1"
-                class="collapse__other-choices-container__choice1"
-              >
+                class="collapse__other-choices-container__choice1">
                 <span class="divider">.</span>
                 <p></p>
               </button>
               <button
                 tabindex="-1"
-                class="collapse__other-choices-container__choice2"
-              >
+                class="collapse__other-choices-container__choice2">
                 <span class="divider">.</span>
                 <p></p>
               </button>
@@ -51,13 +47,16 @@
         <div class="medias-section__medias"></div>
       </section>
     </main>
-    <div id="modal-container">
-      <div id="contact_modal">
+    <div id="modal-container" aria-hidden="true">
+      <div id="contact_modal" role="dialog" aria-hidden="true" tabindex="0">
         <div class="modal">
           <div class="modal__header">
             <h2>Contactez-moi</h2>
             <h3></h3>
-            <img tabindex="0" alt="close" src="assets/icons/close.svg" />
+            <img
+              tabindex="0"
+              alt="Fermer la modale de contact"
+              src="assets/icons/close.svg" />
           </div>
           <form>
             <div class="formData">
@@ -66,8 +65,7 @@
                 class="text-control"
                 type="text"
                 id="first"
-                name="first"
-              /><br />
+                name="first" /><br />
             </div>
             <div class="formData">
               <label for="last">Nom</label><br />
@@ -76,8 +74,7 @@
                 type="text"
                 id="last"
                 name="last"
-                minlength="2"
-              /><br />
+                minlength="2" /><br />
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br />
@@ -85,8 +82,7 @@
                 class="text-control"
                 type="email"
                 id="email"
-                name="email"
-              /><br />
+                name="email" /><br />
             </div>
             <div class="formData">
               <label for="message">Message</label><br />
@@ -95,22 +91,24 @@
                 type="text"
                 id="message"
                 name="message"
-                rows="9"
-              ></textarea
+                rows="9"></textarea
               ><br />
             </div>
 
-            <button class="contact_button">Envoyer</button>
+            <button aria-label="Envoyer" class="contact_button">Envoyer</button>
           </form>
         </div>
       </div>
-      <div id="lightbox_modal">
+      <div
+        id="lightbox_modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-label="Zoom sur image">
         <div class="lightbox__previous">
           <img
             tabindex="0"
             src="assets/icons/previous.svg"
-            alt="Image précédente"
-          />
+            alt="Image précédente" />
         </div>
         <div class="lightbox__content">
           <div class="lightbox__content__media-container"></div>
@@ -123,18 +121,24 @@
           <img
             tabindex="0"
             src="assets/icons/close-red.svg"
-            alt="Fermer l'image"
-          />
+            alt="Fermer le carousel" />
         </div>
       </div>
     </div>
     <aside>
       <div class="like-container">
-        <p class="like-container__amount"></p>
+        <p
+          class="like-container__amount"
+          tabindex="0"
+          aria-label="Nombre de likes"></p>
         <span class="like-container__icon"></span>
       </div>
       <p class="salary-container">
-        <span class="salary-container__amount"></span>€ / jour
+        <span
+          class="salary-container__amount"
+          tabindex="0"
+          aria-label="Salaire"></span
+        >€ / jour
       </p>
     </aside>
     <script src="scripts/templates/photographer.js"></script>

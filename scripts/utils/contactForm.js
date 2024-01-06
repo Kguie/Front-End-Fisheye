@@ -8,12 +8,17 @@ function displayModal(modal, data, mediaId) {
   function openContactModal() {
     if ((lightboxModal.style.display = "flex")) {
       lightboxModal.style.display = "none";
+      lightboxModal.ariaHidden = true
     }
     contactModal.style.display = "block";
+    contactModal.ariaHidden = false
+    contactModal.ariaRoleDescription = `Contactez ${name}`;
     contactModal.scrollIntoView({ behavior: "smooth" });
     modalContainer.style.display = "flex";
     const photographerNameNode = contactModal.querySelector("h3");
     photographerNameNode.textContent = name;
+    $body.ariaHidden = true;
+    modalContainer.ariaHidden = false;
     $body.onkeydown = (event) => {
       if (event.key === "Escape") {
         closeModal();
@@ -59,7 +64,11 @@ function displayModal(modal, data, mediaId) {
   function openLightboxModal() {
     if ((contactModal.style.display = "block")) {
       contactModal.style.display = "none";
+      contactModal.ariaHidden = true;
     }
+    $body.ariaHidden = true;
+    modalContainer.ariaHidden = false;
+    lightboxModal.ariaHidden = false;
     modalContainer.style.display = "flex";
     lightboxModal.style.display = "flex";
     handleLightbox(mediaId, data);
@@ -93,11 +102,15 @@ function closeModal() {
   const lightboxModal = document.getElementById("lightbox_modal");
   const $body = document.querySelector("body");
   modalContainer.style.display = "none";
+  modalContainer.ariaHidden = true;
   if (contactModal.style.display !== "none") {
     contactModal.style.display = "none";
+    contactModal.ariaHidden = true
   }
   if (lightboxModal.style.display !== "none") {
     lightboxModal.style.display = "none";
+    lightboxModal.ariaHidden = true
   }
   $body.onkeydown = null;
+  $body.ariaHidden = false;
 }
