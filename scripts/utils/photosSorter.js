@@ -12,7 +12,7 @@ async function photoSorter(sortKey) {
   );
 
   //Ajout des eventListener pour la gestion de l'ouverture du collapse
-  $chosenSortOption.addEventListener("click", handleCollaspe);
+  $chosenSortOption.addEventListener("click", handleCollapse);
 
   /**
    * Constitue l'affichage de la partie de tri au changement de méthode
@@ -74,7 +74,7 @@ async function photoSorter(sortKey) {
 /**
  * Gère l'ouverture et la fermeture du collapse avec animation
  */
-function handleCollaspe() {
+function handleCollapse() {
   const $chosenSortOption = document.querySelector(".collapse__chosen");
   const $noChosen1SortOption = document.querySelector(
     ".collapse__other-choices-container__choice1"
@@ -97,7 +97,7 @@ function handleCollaspe() {
   /**
    *Gère la navigation au clavier entre les boutons du collapse
    */
-  function handleCollaspeButtonsNavigation(event) {
+  function handleCollapseButtonsNavigation(event) {
     if (event.key === "ArrowUp") {
       event.preventDefault();
       $noChosen2SortOption.focus();
@@ -113,6 +113,7 @@ function handleCollaspe() {
 
   if (!isOpen) {
     //Les boutons sont sélectionnables par tab
+    $chosenSortOption.ariaExpanded = true;
     $noChosen1SortOption.setAttribute("tabIndex", 0);
     $noChosen2SortOption.setAttribute("tabIndex", 0);
     $noChosen1SortOption.setAttribute("aria-hidden", false);
@@ -129,8 +130,9 @@ function handleCollaspe() {
       "Ne pas changer l'ordre de tri"
     );
     //Ajout de la fonction à la pression de la touche
-    $chosenSortOption.onkeydown = handleCollaspeButtonsNavigation;
+    $chosenSortOption.onkeydown = handleCollapseButtonsNavigation;
   } else {
+    $chosenSortOption.ariaExpanded = false;
     collapseContainer.classList.remove(
       "collapse__other-choices-container--open"
     );

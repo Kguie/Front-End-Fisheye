@@ -1,10 +1,10 @@
 async function sortMedias(medias, key) {
-  if (key.toLowerCase() === "date") {
+  if (key?.toLowerCase() === "date") {
     const sortedMedias = medias.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
     displayMedias(sortedMedias);
-  } else if (key.toLowerCase() === "titre") {
+  } else if (key?.toLowerCase() === "titre") {
     const sortedMedias = medias.sort((a, b) => {
       return a.title.localeCompare(b.title);
     });

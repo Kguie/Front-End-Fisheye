@@ -17,8 +17,8 @@ async function displayData(photographer) {
   photographerSalary.textContent = price;
 }
 
-function displaySorter() {
-  photoSorter();
+async function displaySorter() {
+  await photoSorter();
   const $chosenSortOption = document.querySelector(".collapse__chosen");
   const $noChosen1SortOption = document.querySelector(
     ".collapse__other-choices-container__choice1"
@@ -57,11 +57,11 @@ function displaySorter() {
   //Event listeners pour changer de tri
   $noChosen1SortOption.addEventListener("click", () => {
     photoSorter($noChosen1SortOption.querySelector("p").textContent);
-    handleCollaspe();
+    handleCollapse();
   });
   $noChosen2SortOption.addEventListener("click", () => {
     photoSorter($noChosen2SortOption.querySelector("p").textContent);
-    handleCollaspe();
+    handleCollapse();
   });
 }
 
@@ -117,6 +117,9 @@ async function init() {
       closeModal();
     }
   };
+
+
+  addSubmitContactModalEvent()
 }
 
 init();

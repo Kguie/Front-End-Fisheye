@@ -10,6 +10,7 @@ function displayModal(modal, data, mediaId) {
       lightboxModal.style.display = "none";
       lightboxModal.ariaHidden = true
     }
+    //Ajout de la fonction envoi du formulaire
     contactModal.style.display = "block";
     contactModal.ariaHidden = false
     contactModal.ariaRoleDescription = `Contactez ${name}`;
@@ -113,4 +114,26 @@ function closeModal() {
   }
   $body.onkeydown = null;
   $body.ariaHidden = false;
+}
+
+/**
+ * Ajoute l'event de validation du formulaire
+ */
+function addSubmitContactModalEvent() {
+  const $firstName = document.getElementById("first")
+  const $lastName = document.getElementById("last")
+  const $email = document.getElementById("email")
+  const $message = document.getElementById("message")
+  const $contactModal = document.getElementById("contact_modal")
+
+  //Ajout de la fonction sur le bouton contact
+  $contactModal.querySelector("button").onclick = () => {
+    const contactForm = {
+      Prénom: $firstName.value,
+      Nom: $lastName.value,
+      email: $email.value,
+      message: $message.value
+    }
+    console.log(contactForm)
+  }
 }

@@ -23,23 +23,37 @@
       <section class="medias-section">
         <div class="medias-section__sorter">
           <p>Trier par</p>
-          <div id="collapse">
-            <button tabindex="0" class="collapse__chosen">
-              <p></p>
+          <div id="collapse" role="listbox">
+            <button
+              role="button"
+              tabindex="0"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-activedescendant="option1"
+              aria-selected="true"
+              aria-labelledby="option1"
+              class="collapse__chosen">
+              <p id="option1"></p>
               <span class="collapse__chosen__icon" aria-hidden="true"></span>
             </button>
             <div class="collapse__other-choices-container">
               <button
+                role="button"
                 tabindex="-1"
+                id="option2"
+                aria-labelledby="option2"
                 class="collapse__other-choices-container__choice1">
-                <span class="divider">.</span>
-                <p></p>
+                <span aria-hidden="true" class="divider">.</span>
+                <p id="option2"></p>
               </button>
               <button
+                role="button"
                 tabindex="-1"
+                id="option3"
+                aria-labelledby="option2"
                 class="collapse__other-choices-container__choice2">
-                <span class="divider">.</span>
-                <p></p>
+                <span aria-hidden="true" class="divider">.</span>
+                <p id="option3"></p>
               </button>
             </div>
           </div>
@@ -54,6 +68,7 @@
             <h2>Contactez-moi</h2>
             <h3></h3>
             <img
+              role="button"
               tabindex="0"
               alt="Fermer la modale de contact"
               src="assets/icons/close.svg" />
@@ -95,7 +110,9 @@
               ><br />
             </div>
 
-            <button aria-label="Envoyer" class="contact_button">Envoyer</button>
+            <button type="button" aria-label="Envoyer" class="contact_button">
+              Envoyer
+            </button>
           </form>
         </div>
       </div>
@@ -106,20 +123,26 @@
         aria-label="Zoom sur image">
         <div class="lightbox__previous">
           <img
+            role="button"
             tabindex="0"
             src="assets/icons/previous.svg"
             alt="Image précédente" />
         </div>
         <div class="lightbox__content">
           <div class="lightbox__content__media-container"></div>
-          <p class="lightbox__content__title"></p>
+          <p tabindex="0" class="lightbox__content__title"></p>
         </div>
         <div class="lightbox__next">
-          <img tabindex="0" src="assets/icons/next.svg" alt="Image suivante" />
+          <img
+            tabindex="0"
+            src="assets/icons/next.svg"
+            alt="Image suivante"
+            role="button" />
         </div>
         <div class="lightbox__close">
           <img
             tabindex="0"
+            role="button"
             src="assets/icons/close-red.svg"
             alt="Fermer le carousel" />
         </div>

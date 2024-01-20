@@ -15,6 +15,7 @@ function handleLightbox(mediaId, sortedMediasList) {
   const $media = createMediaLightbox(image, video, photographerId, title);
   $mediaWrapper.appendChild($media);
   $title.textContent = title;
+  $title.ariaLabel = title;
 
   const previousMediaId =
     currentMediaIndex === 0
@@ -52,7 +53,7 @@ function handleLightbox(mediaId, sortedMediasList) {
     } else if (event.key === "Tab") {
       event.preventDefault();
       //Sélection des icones avec tab
-      const icons = [$previousButton, $nextButton, $closeButton];
+      const icons = [$previousButton, $title, $nextButton, $closeButton];
       const focusedElement = document.activeElement;
       if (!icons.includes(focusedElement)) {
         icons[0].focus();
@@ -61,6 +62,8 @@ function handleLightbox(mediaId, sortedMediasList) {
       } else if (focusedElement === icons[1]) {
         icons[2].focus();
       } else if (focusedElement === icons[2]) {
+        icons[3].focus();
+      } else if (focusedElement === icons[3]) {
         icons[0].focus();
       }
     }
