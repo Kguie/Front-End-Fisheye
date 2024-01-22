@@ -1,5 +1,5 @@
 async function displayData(photographer) {
-  const $photographersWrapper = document.querySelector(".photograph-header");
+  const $photographersWrapper = document.querySelector(".photographer-header");
 
   const { price, getPageUserCardDOM } = photographerTemplate(photographer);
   const userCardDOM = getPageUserCardDOM();

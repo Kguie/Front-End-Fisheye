@@ -6,9 +6,8 @@ function photographerTemplate(data) {
     ? true
     : false;
 
-  const picture = `assets/photographers/${
-    portrait ? "id/" + portrait : "account.png"
-  }`;
+  const picture = `assets/photographers/${portrait ? "id/" + portrait : "account.png"
+    }`;
 
   function getUserCardDOM() {
     const userCard = document.createElement("article");
@@ -17,9 +16,8 @@ function photographerTemplate(data) {
 
     userCard.innerHTML = `
       <div class="img_container">
-        <img class="profile_img" style="${
-          portrait ? "width:250px;height:250px" : "width:200px;height:200px"
-        }" src="${picture}" alt="Profil de ${name}" />
+        <img class="profile_img" style="${portrait ? "width:250px;height:250px" : "width:200px;height:200px"
+      }" src="${picture}" alt="Profil de ${name}" />
       </div>
       <div class="text_container" style="text-align:center">
         <h2 class="name" style="font-size:36px;margin:20px 0 0 0" aria-label="Nom">${name}</h2>
@@ -34,14 +32,13 @@ function photographerTemplate(data) {
 
   function getPageUserCardDOM() {
     const userCard = document.createElement("article");
-    userCard.classList.add("photograph-header__card");
+    userCard.classList.add("photographer-header__card");
     userCard.setAttribute("aria-label", `Bannière de ${name}`);
 
     userCard.innerHTML = `
       <div class="img_container">
-        <img class="profile_img" style="${
-          portrait ? "width:250px;height:250px" : "width:200px;height:200px"
-        }" src="${picture}" alt="Profil de ${name}" />
+        <img class="profile_img" style="${portrait ? "width:250px;height:250px" : "width:200px;height:200px"
+      }" src="${picture}" alt="Profil de ${name}" />
       </div>
       <div class="contact_button_container">
         <button tabIndex="0" class="contact_button" aria-label="Contact me" >
