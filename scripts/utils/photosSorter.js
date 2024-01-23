@@ -3,10 +3,8 @@ async function photoSorter(sortKey) {
 
   let totalKeys = ["Popularité", "Date", "Titre"];
 
-  const $chosenSortOption = document.querySelector(".collapse__chosen");
-  const $noChosen1SortOption = document.querySelector(
-    ".collapse__other-choices-container__choice1"
-  );
+  const $chosenSortOption = document.getElementById("option1");
+  const $noChosen1SortOption = document.getElementById("option2");
   const $noChosen2SortOption = document.querySelector(
     ".collapse__other-choices-container__choice2"
   );
@@ -21,18 +19,12 @@ async function photoSorter(sortKey) {
     const noChosenArray = totalKeys.filter((key) => key !== sortKey);
     sortMedias(medias, sortKey);
     //Affiche texte du collapse
-    $chosenSortOption.querySelector("p").textContent = sortKey;
-    $chosenSortOption.setAttribute("aria-label", `Tri par ${sortKey}`);
-    $noChosen1SortOption.querySelector("p").textContent = noChosenArray[0];
-    $noChosen1SortOption.setAttribute(
-      "aria-label",
-      `Tri par ${noChosenArray[0]}`
-    );
-    $noChosen2SortOption.querySelector("p").textContent = noChosenArray[1];
-    $noChosen2SortOption.setAttribute(
-      "aria-label",
-      `Tri par ${noChosenArray[1]}`
-    );
+    $chosenSortOption.querySelector(".option-title").textContent = sortKey;
+    $chosenSortOption.ariaLabel = sortKey;
+    $noChosen1SortOption.querySelector(".option-title").textContent = noChosenArray[0];
+    $noChosen1SortOption.setAttribute("aria-label", noChosenArray[0]);
+    $noChosen2SortOption.querySelector(".option-title").textContent = noChosenArray[1];
+    $noChosen2SortOption.setAttribute("aria-label", noChosenArray[1]);
 
     //Relance le compte de likes car pas de sauvegarde
     likesTotalCounter();
@@ -51,18 +43,13 @@ async function photoSorter(sortKey) {
     sortMedias(medias, "popularité");
 
     //Affiche texte du collapse
-    $chosenSortOption.querySelector("p").textContent = chosenKey;
-    $chosenSortOption.setAttribute("aria-label", `Tri par ${chosenKey}`);
-    $noChosen1SortOption.querySelector("p").textContent = noChosenArray[0];
-    $noChosen1SortOption.setAttribute(
-      "aria-label",
-      `Tri par ${noChosenArray[0]}`
-    );
-    $noChosen2SortOption.querySelector("p").textContent = noChosenArray[1];
-    $noChosen2SortOption.setAttribute(
-      "aria-label",
-      `Tri par ${noChosenArray[1]}`
-    );
+    $chosenSortOption.querySelector(".option-title").textContent = chosenKey;
+    $chosenSortOption.setAttribute("aria-label", chosenKey);
+    $noChosen1SortOption.querySelector(".option-title").textContent = noChosenArray[0];
+    $noChosen1SortOption.setAttribute("aria-label", noChosenArray[0]);
+    $noChosen2SortOption.querySelector(".option-title").textContent = noChosenArray[1];
+    $noChosen2SortOption.setAttribute("aria-label", noChosenArray[1]);
+
     //Initialise le compte de likes
     likesTotalCounter();
 
@@ -113,7 +100,7 @@ function handleCollapse() {
 
   if (!isOpen) {
     //Les boutons sont sélectionnables par tab
-    $chosenSortOption.ariaExpanded = true;
+    document.getElementById("collapse").ariaExpanded = true;
     $noChosen1SortOption.setAttribute("tabIndex", 0);
     $noChosen2SortOption.setAttribute("tabIndex", 0);
     $noChosen1SortOption.setAttribute("aria-hidden", false);
@@ -125,14 +112,11 @@ function handleCollapse() {
     collapseContainer.classList.add("collapse__other-choices-container--open");
     collapseScreen.classList.add("collapse__chosen--open");
     icon.style.transform = "rotate(180deg)";
-    $chosenSortOption.setAttribute(
-      "aria-label",
-      "Ne pas changer l'ordre de tri"
-    );
+
     //Ajout de la fonction à la pression de la touche
     $chosenSortOption.onkeydown = handleCollapseButtonsNavigation;
   } else {
-    $chosenSortOption.ariaExpanded = false;
+    document.getElementById("collapse").ariaExpanded = false;
     collapseContainer.classList.remove(
       "collapse__other-choices-container--open"
     );
@@ -147,10 +131,7 @@ function handleCollapse() {
       collapseContainer.style.opacity = 0;
       collapseScreen.classList.remove("collapse__chosen--open");
     }, 100);
-    $chosenSortOption.setAttribute(
-      "aria-label",
-      "Cliquez pour choisir un ordre de tri"
-    );
+
     //Suppression de la fonction à la pression de la touche
     $chosenSortOption.onkeydown = null;
   }

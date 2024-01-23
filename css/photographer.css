@@ -58,7 +58,7 @@
   align-items: center;
 }
 
-#collapse p {
+#collapse .option-title {
   font-size: 18px;
   font-weight: 700;
   color: #fff;

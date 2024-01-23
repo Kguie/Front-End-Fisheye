@@ -56,11 +56,11 @@ async function displaySorter() {
 
   //Event listeners pour changer de tri
   $noChosen1SortOption.addEventListener("click", () => {
-    photoSorter($noChosen1SortOption.querySelector("p").textContent);
+    photoSorter($noChosen1SortOption.querySelector(".option-title").textContent);
     handleCollapse();
   });
   $noChosen2SortOption.addEventListener("click", () => {
-    photoSorter($noChosen2SortOption.querySelector("p").textContent);
+    photoSorter($noChosen2SortOption.querySelector(".option-title").textContent);
     handleCollapse();
   });
 }

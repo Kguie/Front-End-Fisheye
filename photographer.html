@@ -23,17 +23,19 @@
       <section class="medias-section">
         <div class="medias-section__sorter">
           <p>Trier par</p>
-          <div id="collapse" role="listbox">
+          <div
+            id="collapse"
+            role="group"
+            aria-label="Trier par"
+            aria-expanded="false"
+            aria-activedescendant="option1">
             <button
               role="button"
+              aria-haspopup
               tabindex="0"
-              aria-haspopup="listbox"
-              aria-expanded="false"
-              aria-activedescendant="option1"
-              aria-selected="true"
-              aria-labelledby="option1"
+              id="option1"
               class="collapse__chosen">
-              <p id="option1"></p>
+              <span class="option-title"></span>
               <span class="collapse__chosen__icon" aria-hidden="true"></span>
             </button>
             <div class="collapse__other-choices-container">
@@ -41,19 +43,17 @@
                 role="button"
                 tabindex="-1"
                 id="option2"
-                aria-labelledby="option2"
                 class="collapse__other-choices-container__choice1">
                 <span aria-hidden="true" class="divider">.</span>
-                <p id="option2"></p>
+                <span class="option-title"></span>
               </button>
               <button
                 role="button"
                 tabindex="-1"
                 id="option3"
-                aria-labelledby="option2"
                 class="collapse__other-choices-container__choice2">
                 <span aria-hidden="true" class="divider">.</span>
-                <p id="option3"></p>
+                <span class="option-title"></span>
               </button>
             </div>
           </div>
@@ -103,7 +103,6 @@
               <label for="message">Message</label><br />
               <textarea
                 class="text-control"
-                type="text"
                 id="message"
                 name="message"
                 rows="9"></textarea
